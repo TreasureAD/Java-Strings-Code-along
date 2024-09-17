@@ -51,7 +51,24 @@ public class Codealong {
       double rightNum = valueFromWord(parts[2]);
       double result = execute(opCode, leftNum, rightNum);
 
-        System.out.println(result);
+      displayResult(opCode, leftNum, rightNum, result);
+
+    }
+
+    private static void displayResult(char opCode, double leftNum, double rightNum, double result) {
+
+    char symbol = symbolFromOpCode(opCode);
+    StringBuilder builder = new StringBuilder(20);
+    builder.append(leftNum);
+    builder.append(" ");
+    builder.append(symbol);
+    builder.append(" ");
+    builder.append(rightNum);
+    builder.append(" = ");
+    builder.append(result); //String builder does the conversion to a string for you
+    String output = builder.toString();
+
+    System.out.println(output);
 
     }
 
@@ -80,6 +97,22 @@ public class Codealong {
 
         return result;
     }
+
+    private static char symbolFromOpCode(char opCode) {
+        char[] opCodes = {'a', 's', 'm', 'd'};
+        char[] symbols = {'+', '-', '*', '/'}; // Parallel arrays, the values correspond
+        char symbol = ' ';
+
+        for (int index = 0; index < opCodes.length; index++) {
+            if (opCode == opCodes[index]) {
+                symbol = symbols[index];
+                break;
+            }
+        }
+
+        return symbol;
+    }
+
 
 
     public static void main(String[] args) {
